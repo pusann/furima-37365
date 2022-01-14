@@ -1,24 +1,43 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+| column             | Type  | Options    |
+| -------------------|-------|------------|
+| name               | || 
+| password           | ||
+| email              | ||
+| nickname           | ||
+| date of birth      | ||
 
-* Ruby version
 
-* System dependencies
 
-* Configuration
 
-* Database creation
 
-* Database initialization
 
-* How to run the test suite
+## items テーブル
 
-* Services (job queues, cache servers, search engines, etc.)
+| column             | Type  | Options    |
+| -------------------|-------|------------|
+| product image      | || 
+| product name       | ||
+| product condition  | ||
+| category           | ||
+| product condition  | ||
+| burden of shipping  charges|
+| shipping area      |||
+| days to ship       | ||
+| selling price      | ||
+| seller             | ||
 
-* Deployment instructions
 
-* ...
+
+## shippingaddress テーブル
+
+| column             | Type  | Options    |
+| -------------------|-------|------------|
+| post code          | || 
+| password           | ||
+| email              | ||
+| nickname           | ||
+| date of birth      | ||
