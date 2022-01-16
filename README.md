@@ -36,7 +36,7 @@
 - belongs_to :shipping address
 
 
-## shipping address テーブル    (配送先)
+## shipping addresss テーブル    (配送先)
 
 | column             | Type     | Options      |
 | -------------------|----------|--------------|
@@ -51,7 +51,7 @@
 - has_one :purchase
 
 
-##  purchase テーブル      (購入)
+##  purchases テーブル      (購入)
 
 | column | Type       | Options      |
 | -------|------------|--------------|
