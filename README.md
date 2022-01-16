@@ -1,6 +1,6 @@
 # テーブル設計
 
-## users テーブル
+## users テーブル　
 
 | column             | Type     | Options     |
 | -------------------|----------|-------------|
@@ -16,7 +16,7 @@
 - has_many :purchase
 - belongs_to :shipping address
 
-## items テーブル  
+## items テーブル
 
 | column                      | Type     | Options     |
 | ----------------------------|----------|-------------|
@@ -36,7 +36,7 @@
 - belongs_to :shipping address
 
 
-## shipping addresss テーブル    (配送先)
+## shipping addresss テーブル    (配送先)　
 
 | column             | Type     | Options      |
 | -------------------|----------|--------------|
@@ -51,7 +51,7 @@
 - has_one :purchase
 
 
-##  purchases テーブル      (購入)
+##  purchases テーブル      (購入)　
 
 | column | Type       | Options      |
 | -------|------------|--------------|
@@ -61,7 +61,7 @@
 - belons_to :user
 
 
-## comments テーブル
+## comments テーブル　
 
 | column      | Type        | Options                        |
 |-------------|-------------|--------------------------------|
