@@ -1,67 +1,69 @@
 # テーブル設計
 
-## users テーブル
+## users テーブル 
 
-| column             | Type     | Options     |
-| -------------------|----------|-------------|
-| name               | string   | null: false | 
-| name(kana)         | string   | null: false | 
-| password           | string   | null: false |
-| email              | string   | null: false |
-| nickname           | string   | null: false |
-| date of birth      | datetime | null: false |
+| column              | Type     | Options                   |
+| --------------------|----------|---------------------------|
+| first_name          | string   | null: false               |  
+| last_name           | string   | null: false               | 
+| first_name_kana     | string   | null: false               |
+| last_name_kana      | string   | null: false               |
+| encrypted_password  | string   | null: false               |
+| email               | string   | null: false, unique: true |
+| nickname            | string   | null: false               |
+| date_of_birth       | date     | null: false               |
 
 - has_many :items
 - has_many :comments
-- has_many :purchase
-- belongs_to :shipping address
+- has_many :purchases
 
-## items テーブル  
 
-| column                      | Type     | Options     |
-| ----------------------------|----------|-------------|
-| product image               | text     | null: false | 
-| product name                | string   | null: false |
-| product description         | text     | null: false |
-| category                    | integer  | null: false |
-| product condition           | integer  | null: false |
-| burden of shipping  charges | integer  | null: false |
-| shipping area               | string   | null: false |
-| days to ship                | datetime | null: false |
-| selling price               | integer  | null: false |
-| seller                      | string   | null: false |
+## items テーブル
+
+| column                         | Type        | Options                        |
+| -------------------------------|-------------|--------------------------------|
+| product_name                   | string      | null: false                    |
+| product_description            | text        | null: false                    |
+| category_id                    | integer     | null: false                    |
+| product_condition_id           | integer     | null: false                    |
+| burden_of_shipping_charges_id  | integer     | null: false                    |
+| shipping_area_id               | integer     | null: false                    |
+| days_to_ship_id                | integer     | null: false                    |
+| selling_price                  | integer     | null: false                    |
+| user                           | references  | null: false, foreign_key: true | 
 
 - belongs_to :user
 - has_many :comments
-- belongs_to :shipping address
-
-
-## shipping addresss テーブル    (配送先)
-
-| column             | Type     | Options      |
-| -------------------|----------|--------------|
-| post code          | integer  | null: false  | 
-| prefectures        | string   | null: false  |
-| municipalities     | string   | null: false  |
-| address            | integer  | null: false  |
-| building name      | string   |              |
-| telephone number   | integer  | null: false  |
-
-- belongs_to :user
 - has_one :purchase
+
+
+## shipping_addresses テーブル    (配送先)
+
+| column             | Type       | Options                        |
+| -------------------|------------|--------------------------------|
+| post_code          | string     | null: false                    | 
+| prefectures_id     | integer    | null: false                    |
+| municipality       | string     | null: false                    |
+| address            | string     | null: false                    |
+| building_name      | string     |                                |
+| telephone_number   | string     | null: false                    |
+| purchase           | references | null: false, foreign_key: true |
+
+- belongs_to :purchase
 
 
 ##  purchases テーブル      (購入)
 
-| column | Type       | Options      |
-| -------|------------|--------------|
-| user   |references  | null: false  | 
-| item   |integer     | null: false  |
+| column | Type       | Options                        |
+| -------|------------|--------------------------------|
+| user   |references  | null: false, foreign_key: true | 
+| item   |references  | null: false, foreign_key: true |
 
-- belons_to :user
+- belongs_to :item
+- belongs_to :user
+- has_one :shipping_address
 
-
-## comments テーブル
+## comments テーブル 
 
 | column      | Type        | Options                        |
 |-------------|-------------|--------------------------------|
@@ -70,3 +72,4 @@
 | product     | integer     | null: false                    |
 
 - belongs_to :user
+- belongs_to :item
