@@ -37,14 +37,14 @@
 - has_one :purchase
 
 
-## shipping_addresss テーブル    (配送先)
+## shipping_addresses テーブル    (配送先)
 
 | column             | Type       | Options                        |
 | -------------------|------------|--------------------------------|
-| post_code          | integer    | null: false                    | 
-| prefectures        | string     | null: false                    |
-| municipalities     | string     | null: false                    |
-| address            | integer    | null: false                    |
+| post_code          | string     | null: false                    | 
+| prefectures_id     | integer    | null: false                    |
+| municipality       | string     | null: false                    |
+| address            | string     | null: false                    |
 | building_name      | string     |                                |
 | telephone_number   | string     | null: false                    |
 | purchase           | references | null: false, foreign_key: true |
