@@ -16,26 +16,25 @@
 - has_many :items
 - has_many :comments
 - has_many :purchases
-- belongs_to :shipping_address
+
 
 ## items テーブル
 
-| column                      | Type        | Options                        |
-| ----------------------------|-------------|--------------------------------|
-| product_image               | text        | null: false                    | 
-| product_name                | string      | null: false                    |
-| product_description         | text        | null: false                    |
-| category                    | integer     | null: false                    |
-| product_condition           | integer     | null: false                    |
-| burden_of_shipping_charges  | integer     | null: false                    |
-| shipping_area               | string      | null: false                    |
-| days_to_ship                | date        | null: false                    |
-| selling_price               | integer     | null: false                    |
-| seller                      | references  | null: false, foreign_key: true | 
+| column                         | Type        | Options                        |
+| -------------------------------|-------------|--------------------------------|
+| product_name                   | string      | null: false                    |
+| product_description            | text        | null: false                    |
+| category_id                    | integer     | null: false                    |
+| product_condition_id           | integer     | null: false                    |
+| burden_of_shipping_charges_id  | integer     | null: false                    |
+| shipping_area_id               | integer     | null: false                    |
+| days_to_ship_id                | integer     | null: false                    |
+| selling_price                  | integer     | null: false                    |
+| user                           | references  | null: false, foreign_key: true | 
 
 - belongs_to :user
 - has_many :comments
-- belongs_to :shipping_address
+- has_one :purchase
 
 
 ## shipping_addresss テーブル    (配送先)
@@ -47,10 +46,10 @@
 | municipalities     | string     | null: false                    |
 | address            | integer    | null: false                    |
 | building_name      | string     |                                |
-| telephone_number   | integer    | null: false                    |
+| telephone_number   | string     | null: false                    |
 | purchase           | references | null: false, foreign_key: true |
 
-
+- belongs_to :purchase
 
 
 ##  purchases テーブル      (購入)
@@ -60,8 +59,9 @@
 | user   |references  | null: false, foreign_key: true | 
 | item   |references  | null: false, foreign_key: true |
 
-- belong_to :items
-- belong_to :user
+- belongs_to :item
+- belongs_to :user
+- has_one :shipping_address
 
 ## comments テーブル 
 
@@ -72,3 +72,4 @@
 | product     | integer     | null: false                    |
 
 - belongs_to :user
+- belongs_to :item
