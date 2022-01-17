@@ -1,17 +1,17 @@
 # テーブル設計
 
-## users テーブル　
+## users テーブル 
 
-| column              | Type     | Options      |
-| --------------------|----------|--------------|
-| first_name          | string   | null: false  | 
-| last_name           | string   | null: false  | 
-| first_name_kana     | string   | null: false  |
-| last_name_kana      | string   | null: false  |
-| encrypted_password  | string   | null: false  |
-| email               | string   | unique: true |
-| nickname            | string   | null: false  |
-| date_of_birth       | date     | null: false  |
+| column              | Type     | Options                   |
+| --------------------|----------|---------------------------|
+| first_name          | string   | null: false               |  
+| last_name           | string   | null: false               | 
+| first_name_kana     | string   | null: false               |
+| last_name_kana      | string   | null: false               |
+| encrypted_password  | string   | null: false               |
+| email               | string   | null: false, unique: true |
+| nickname            | string   | null: false               |
+| date_of_birth       | date     | null: false               |
 
 - has_many :items
 - has_many :comments
@@ -20,18 +20,18 @@
 
 ## items テーブル
 
-| column                      | Type     | Options     |
-| ----------------------------|----------|-------------|
-| product_image               | text     | null: false | 
-| product_name                | string   | null: false |
-| product_description         | text     | null: false |
-| category                    | integer  | null: false |
-| product_condition           | integer  | null: false |
-| burden_of_shipping_charges  | integer  | null: false |
-| shipping_area               | string   | null: false |
-| days_to_ship                | datetime | null: false |
-| selling_price               | integer  | null: false |
-| seller                      | string   | null: false |
+| column                      | Type        | Options                        |
+| ----------------------------|-------------|--------------------------------|
+| product_image               | text        | null: false                    | 
+| product_name                | string      | null: false                    |
+| product_description         | text        | null: false                    |
+| category                    | integer     | null: false                    |
+| product_condition           | integer     | null: false                    |
+| burden_of_shipping_charges  | integer     | null: false                    |
+| shipping_area               | string      | null: false                    |
+| days_to_ship                | date        | null: false                    |
+| selling_price               | integer     | null: false                    |
+| seller                      | references  | null: false, foreign_key: true | 
 
 - belongs_to :user
 - has_many :comments
@@ -51,8 +51,6 @@
 | purchase           | references | null: false, foreign_key: true |
 
 
-- belongs_to :user
-- belongs_to :purchases
 
 
 ##  purchases テーブル      (購入)
@@ -62,10 +60,10 @@
 | user   |references  | null: false, foreign_key: true | 
 | item   |references  | null: false, foreign_key: true |
 
-- belong_to :itme
-- belong_to :shipping_address
+- belong_to :items
+- belong_to :user
 
-## comments テーブル　
+## comments テーブル 
 
 | column      | Type        | Options                        |
 |-------------|-------------|--------------------------------|
