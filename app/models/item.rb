@@ -1,6 +1,20 @@
 class Item < ApplicationRecord
-   belong_to :user
+   validates :product_name, presence: true
+   validates :product_description, presence: true
+   validates :category_id , presence: true
+   validates :product_condition_id, presence: true
+   validates :burden_of_shipping_charges_id, presence: true
+   validates :shipping_area_id, presence: true
+   validates :days_to_ship_id, presence: true
+   validates :selling_price, presence: true
+
+
+   belongs_to :user
    has_many :comments
    has_one :purchase
-   has_one_attached : image
+   has_one_attached :image
+
+include ActiveHash::Associations
+  has_many :Category
 end
+ 
