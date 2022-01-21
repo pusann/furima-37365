@@ -1,47 +1,59 @@
 require 'rails_helper'
 
-RSpec.describe Item, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+RSpec.describe Item, type: :model  do
   before do
-    @user = FactoryBot.build(:item)
+    @item = FactoryBot.build(:item)
    end
-   describe 'product_imageを1枚つけることが必須である'  do
-     @user.product_image = ''
-      @user.valid?
-      expect(@user.errors.full_messages).to include "product_image can't be blank"
-    end
+   describe '商品出品登録'   do
+     it 'imageを1枚つけることが必須であること'  do
+      @item.image = ''
+      @item.valid?
+      expect(@item.errors.full_messages).to include  "Selling price is invalid. Include hyphen(-)"
+     end
     it 'product_nameが空では登録できない'    do
-      @user.product_name = ''
-      @user.valid?
-      expect(@user.errors.full_messages).to include "product_name can't be blank"
+      @item.product_name = ''
+      @item.valid?
+      expect(@item.errors.full_messages).to include "Product name can't be blank"
     end
-    it '商品の説明が空では登録できない'    do
-      @user.product = ''
-      @user.valid?
-      expect(@user.errors.full_messages).to include "product can't be blank"
+    it 'product_descriptionが空では登録できない'    do
+      @item.product_description = ''
+      @item.valid?
+      expect(@item.errors.full_messages).to include "Product description can't be blank"
     end
-    it  'カテゴリーの情報が空では登録できない'    do
-      @user.product = ''
-      @user.valid?
-      expect(@user.errors.full_messages).to include "product can't be blank"
+    it  'category_idの情報が空では登録できない'    do
+      @item.category_id = ''
+      @item.valid?
+      expect(@item.errors.full_messages).to include "Category can't be blank"
     end
-    it '商品の状態の情報が空では登録できない'   do
-      @user.product = ''
-      @user.valid?
-      expect(@user.errors.full_messages).to include "product can't be blank"
+    it 'product_condition_idの情報が空では登録できない'   do
+      @item.product_condition_id = ''
+      @item.valid?
+      expect(@item.errors.full_messages).to include "Product condition can't be blank"
     end
-    it '配送料の負担の情報が空では登録できない'   do
-      @user.product = ''
-      @user.valid?
-      expect(@user.errors.full_messages).to include "product can't be blank"
+    it 'burden_of_shipping_charges_idの情報が空では登録できない'   do
+      @item.burden_of_shipping_charges_id = ''
+      @item.valid?
+      expect(@item.errors.full_messages).to include "Burden of shipping charges can't be blank"
     end
-    it '発送元の地域の情報が空では登録できない'   do
-      @user.product = ''
-      @user.valid?
-      expect(@user.errors.full_messages).to include "product can't be blank"
+    it 'shipping_area_idの情報が空では登録できない'   do
+      @item.shipping_area_id = ''
+      @item.valid?
+      expect(@item.errors.full_messages).to include "Shipping area can't be blank"
     end
-    it '発送までの日数の情報が空では登録できない'   do
-      @user.product = ''
-      @user.valid?
-      expect(@user.errors.full_messages).to include "product can't be blank"
+    it 'days_to_ship_idの情報が空では登録できない'   do
+      @item.days_to_ship_id = ''
+      @item.valid?
+      expect(@item.errors.full_messages).to include "Days to ship can't be blank"
     end
+    it 'selling_priceが空では登録できない'   do
+      @item.selling_price = ''
+      @item.valid?
+      expect(@item.errors.full_messages).to include "Selling price can't be blank"
+      end
+      it 'selling_priceが299以下だと登録できないこと' do
+        @item.selling_price = '298'
+        @item.valid?
+        expect(@item.errors.full_messages).to include "Selling price is invalid. Include hyphen(-)"
+        end
+   end
+end

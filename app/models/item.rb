@@ -6,9 +6,8 @@ class Item < ApplicationRecord
    validates :burden_of_shipping_charges_id, presence: true
    validates :shipping_area_id, presence: true
    validates :days_to_ship_id, presence: true
-   validates :selling_price, presence: true
-
-
+   validates :selling_price, presence: true, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
+  
    belongs_to :user
    has_many :comments
    has_one :purchase
