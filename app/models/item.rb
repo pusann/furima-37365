@@ -16,11 +16,9 @@ class Item < ApplicationRecord
 
    extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
-
-  include ActiveHash::Associations
-  has_many :product_condition
-  has_many :burden_of_shipping_charges
-  has_many :shipping_area
-  has_many :days_to_ship
+  belongs_to :product_condition
+  belongs_to :burden_of_shipping_charges
+  belongs_to :shipping_area
+  belongs_to :days_to_ship
 end
  
