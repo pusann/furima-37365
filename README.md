@@ -32,6 +32,7 @@
 | selling_price                  | integer     | null: false                    |
 | user                           | references  | null: false, foreign_key: true | 
 
+
 - belongs_to :user
 - has_many :comments
 - has_one :purchase
