@@ -127,7 +127,7 @@
       新規投稿商品
     </div>
     <ul class='item-lists'>
-
+  
       <% @items.each do |item| %>
       <li class='list'>
         <%= link_to "#" do %>
@@ -135,7 +135,7 @@
           <%= image_tag item.image, class: "item-img" %>
 
           <%# 購入機能実装時にコメントアウト解除 %>
-          <%# if @item.purchase.present? %>
+          <%# if @item.purchase.present? %>     
           <div class='sold-out'>
             <span>Sold Out!!</span>
           </div>
@@ -160,9 +160,8 @@
     <% end %>
 
       <%# 商品がない場合は以下のダミー商品が表示されるようにしましょう %>
-
-      <% if @items.length == 0 %>
-      <% end %>
+      <% if @items.length == 0 %>    
+  
       <%# 商品がある場合は表示されないようにしましょう %>
       <li class='list'>
         <%= link_to '#' do %>
@@ -181,6 +180,7 @@
         </div>
         <% end %>
       </li>
+  <% end %>
       <%# //商品がある場合は表示されないようにしましょう %>
       <%# //商品がない場合は以下のダミー商品が表示されるようにしましょう %>
     </ul>
