@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new,:edit]
-  before_action :set_item, only: [:edit,:update,:show]
+  before_action :set_item, only: [:edit,:update,:show,:destroy]
 
   def index
     @items = Item.all.order(created_at: :desc)
@@ -14,15 +14,15 @@ class ItemsController < ApplicationController
       redirect_to  root_path
     else
       render :new
-     end
+    end
   end
   def  edit  
-      unless current_user.id ==  @item.user_id
+    unless current_user.id ==  @item.user_id
         redirect_to action: :index
     end
   end
 
-   def   update
+  def   update
     if @item.update(item_params)
     redirect_to item_path
     else
@@ -32,8 +32,15 @@ class ItemsController < ApplicationController
 
   def  show
   end
-  private
 
+  def   destroy
+    if current_user.id ==  @item.user_id
+      @item.destroy
+      redirect_to root_path
+    end
+  end
+
+  private
   def item_params
     params.require(:item).permit(:product_name,:product_description,:category_id,:product_condition_id,:burden_of_shipping_charges_id,:shipping_area_id,:days_to_ship_id,:selling_price,:image).merge(user_id: current_user.id)  
   end
