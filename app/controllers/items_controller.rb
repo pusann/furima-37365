@@ -14,15 +14,15 @@ class ItemsController < ApplicationController
       redirect_to  root_path
     else
       render :new
-     end
+    end
   end
   def  edit  
-      unless current_user.id ==  @item.user_id
+    unless current_user.id ==  @item.user_id
         redirect_to action: :index
     end
   end
 
-   def   update
+  def   update
     if @item.update(item_params)
     redirect_to item_path
     else
@@ -37,7 +37,7 @@ class ItemsController < ApplicationController
     if current_user.id ==  @item.user_id
       @item.destroy
       redirect_to root_path
-   end
+    end
   end
 
   private
