@@ -10,11 +10,11 @@
       <%= image_tag @item.image, class: 'buy-item-img' %>
       <div class='buy-item-right-content'>
         <h2 class='buy-item-text'>
-          <%= "商品名" %>
+          <%= @item.product_name  %>
         </h2>
         <div class='buy-item-price'>
-          <p class='item-price-text'>¥<%= '999,999,999' %></p>
-          <p class='item-price-sub-text'><%= '配送料負担' %></p>
+          <p class='item-price-text'>¥<%= @item.selling_price %></p>
+          <p class='item-price-sub-text'><%= @item.burden_of_shipping_charges.name %></p>
         </div>
       </div>
     </div>
@@ -26,13 +26,13 @@
         支払金額
       </h1>
       <p class='item-payment-price'>
-        ¥<%= "販売価格" %>
+        ¥<%=  @item.selling_price %>
       </p>
     </div>
     <%# /支払額の表示 %>
 
-    <%= form_with model: @shipping_address,id: 'charge-form', class: 'transaction-form-wrap',local: true do |f| %>
-        <%= render 'shared/error_messages', model: f.object %>
+    <%= form_with model: @shipping_address,url:shipping_path, donations_path,id: 'charge-form', class: 'transaction-form-wrap',local: true do |f| %>
+        <%= render 'shared/error_messages', model: @shipping_address %>
 
     <%# カード情報の入力 %>
     <div class='credit-card-form'>
@@ -129,4 +129,4 @@
     <% end %>
   </div>
 </div>
-<%= render "shared/second-footer"%>
+  <%= render "shared/second-footer"%>

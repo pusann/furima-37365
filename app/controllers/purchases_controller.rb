@@ -1,13 +1,14 @@
 class PurchasesController < ApplicationController
   def   index
     @item = Item.find(params[:item_id])
-    @shipping_addres = ShippingAddress.new
+    @shipping_address = ShippingAddress.new
   end
 
   def  create
     @item = Item.find(params[:item_id])
-    @shipping_addres = ShippingAddress.new
-    if @shipping_addres.save
+    @shipping_address = ShippingAddress.new(shipping_params)
+    if @shipping_address.valid?
+      @shipping_address.save
       redirect_to  root_path
     else
        render :index

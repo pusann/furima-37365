@@ -11,8 +11,9 @@ class  ShippingAddress
   validates :purchase,presence: true
 
   def save
-    #Shipping.create
-    #Address.create
+    #shipping  = Shipping.create((price: price, user_id: user_id))
+    #Address.create(postal_code: postal_code, prefecture: prefecture, municipality: municipality, telephone_number: telephone_number, building_name: building_name)
+
   end
 
 end
