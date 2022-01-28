@@ -1,14 +1,14 @@
 class  ShippingAddress
   include ActiveModel::Model 
-  attr_accessor :post_code,:prefectures_id,:municipality,:address, :building_name,:telephone_number,:purchase
+  attr_accessor :post_code,:prefectures_id,:municipality,:address, :building_name,:telephone_number
 
-  validates :post_code, presence: true
-  validates :prefectures_id, presence: true
+  validates :post_code, presence: true,format: { with: /\A[0-9]{3}-[0-9]{4}\z/ }
+  validates :prefectures_id, presence: true,numericality: { other_than: 1 , message: "can't be blank"}
   validates :municipality,  presence: true
   validates :address, presence: true
   validates :building_name, presence: true
-  validates :telephone_number,presence: true
-  validates :purchase,presence: true
+  validates :telephone_number,presence: true,format: {with: /\A\d{10}$|^\d{11}\z/ }
+  #validates :purchase,presence: true
 
   def save
     #shipping  = Shipping.create((price: price, user_id: user_id))
