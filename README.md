@@ -38,7 +38,7 @@
 - has_one :purchase
 
 
-## shipping_addresses テーブル    (配送先)
+##  addresses テーブル    (配送先)
 
 | column             | Type       | Options                        |
 | -------------------|------------|--------------------------------|
@@ -62,7 +62,7 @@
 
 - belongs_to :item
 - belongs_to :user
-- has_one :shipping_address
+- has_one :address
 
 ## comments テーブル 
 

@@ -12,7 +12,7 @@ describe '商品購入'   do
       expect(@shipping_address).to be_valid
      end
      it "priceとtokenがあれば保存ができること" do
-      expect(@order).to be_valid
+      expect(@shipping_address).to be_valid
     end
   end
   context '内容に問題がある場合'  do
@@ -52,10 +52,20 @@ describe '商品購入'   do
       @shipping_address.valid?
        expect(@shipping_address.errors.full_messages).to include "Telephone number is invalid"
       end
+      it  'telephone_numberは、12桁以上は購入できない'   do
+        @shipping_address.telephone_number = '090746598326'
+        @shipping_address.valid?
+         expect(@shipping_address.errors.full_messages).to include "Telephone number is invalid"
+        end
+        it  'telephone_numberは、9桁以下は購入できない'   do
+          @shipping_address.telephone_number = '09046735'
+          @shipping_address.valid?
+           expect(@shipping_address.errors.full_messages).to include "Telephone number is invalid"
+          end
       it "tokenが空では登録できないこと" do
-        @order.token = nil
-        @order.valid?
-        expect(@order.errors.full_messages).to include("Token can't be blank")
+        @shipping_address.token = nil
+        @shipping_address.valid?
+        expect(@shipping_address.errors.full_messages).to include("Token can't be blank")
       end
     end
   end
