@@ -10,7 +10,7 @@ class  ShippingAddress
   validates :token,presence: true
   def save
     purchase = Purchase.create(item_id: item_id, user_id: user_id)
-    Address.create(postal_code: postal_code, prefecture: prefecture, municipality: municipality, telephone_number: telephone_number, building_name: building_name,purchase_id:purchase.id)
+    Address.create(post_code: post_code, shipping_area_id: shipping_area_id, municipality: municipality,address: address, telephone_number: telephone_number, building_name: building_name,purchase_id:purchase.id)
   end
 
 end
