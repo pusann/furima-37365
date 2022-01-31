@@ -14,6 +14,9 @@ describe '商品購入'   do
      it "priceとtokenがあれば保存ができること" do
       expect(@shipping_address).to be_valid
     end
+    it '建物名がからでも購入できる'   do
+      expect(@shipping_address).to be_valid
+    end
   end
   context '内容に問題がある場合'  do
     it 'post_codeが空ではないこと'    do    
@@ -67,6 +70,16 @@ describe '商品購入'   do
         @shipping_address.valid?
         expect(@shipping_address.errors.full_messages).to include("Token can't be blank")
       end
+      it 'userが紐づいていなければ購入できない'   do
+        @shipping_address.user = ''
+        @shipping_address.valid?
+        expect(@shipping_address.errors.full_messages).to include "User can't be blank"
+        end
+      it 'itemが紐づいていなければ購入できない'   do
+        @shipping_address.item = ''
+        @shipping_address.valid?
+        expect(@shipping_address.errors.full_messages).to include "Item can't be blank"
+        end
     end
   end
 end

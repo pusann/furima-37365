@@ -7,6 +7,8 @@ class  ShippingAddress
   validates :municipality,  presence: true
   validates :address, presence: true
   validates :telephone_number,presence: true,format: {with: /\A\d{10}$|^\d{11}\z/ }
+  validates :user_id,presence: true
+  validates :item_id,presence: true
   validates :token,presence: true
   def save
     purchase = Purchase.create(item_id: item_id, user_id: user_id)
