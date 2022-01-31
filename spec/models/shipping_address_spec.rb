@@ -71,14 +71,14 @@ describe '商品購入'   do
         expect(@shipping_address.errors.full_messages).to include("Token can't be blank")
       end
       it 'userが紐づいていなければ購入できない'   do
-        @shipping_address.user = ''
+        @shipping_address.user = nil
         @shipping_address.valid?
-        expect(@shipping_address.errors.full_messages).to include "User can't be blank"
+        expect(@shipping_address.errors.full_messages).to include "User must exist"
         end
       it 'itemが紐づいていなければ購入できない'   do
-        @shipping_address.item = ''
+        @shipping_address.item = nil
         @shipping_address.valid?
-        expect(@shipping_address.errors.full_messages).to include "Item can't be blank"
+        expect(@shipping_address.errors.full_messages).to include "Item  must exist"
         end
     end
   end
