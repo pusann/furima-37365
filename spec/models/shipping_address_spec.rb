@@ -2,8 +2,10 @@ require 'rails_helper'
 
 RSpec.describe ShippingAddress, type: :model do
   before     do
-    @shipping_address = FactoryBot.build(:shipping_address)
-    
+    @user = FactoryBot.create(:user)
+    @item = FactoryBot.create(:item)
+    @shipping_address = FactoryBot.build(:shipping_address,user_id: @user,item_id: @item)
+    sleep 0.5
   end
 
 describe '商品購入'   do
@@ -14,7 +16,7 @@ describe '商品購入'   do
      it "priceとtokenがあれば保存ができること" do
       expect(@shipping_address).to be_valid
     end
-    it '建物名がからでも購入できる'   do
+    it ' building_nameが空でも購入できる'   do
       expect(@shipping_address).to be_valid
     end
   end
@@ -29,10 +31,10 @@ describe '商品購入'   do
       @shipping_address.valid?
       expect(@shipping_address.errors.full_messages).to include "Post code is invalid"
     end
-    it 'prefectures_idに「---」が選択されている場合は購入できない'  do
-      @shipping_address.prefectures_id = 1
+    it 'shipping_area_idに「---」が選択されている場合は購入できない'  do
+      @shipping_address.shipping_area_id = 1
       @shipping_address.valid?
-      expect(@shipping_address.errors.full_messages).to include "Prefectures can't be blank"
+      expect(@shipping_address.errors.full_messages).to include "Shipping area can't be blank"
     end 
     it   'municipalityが空ではないこと'    do
       @shipping_address.municipality = ''
@@ -68,18 +70,19 @@ describe '商品購入'   do
       it "tokenが空では登録できないこと" do
         @shipping_address.token = nil
         @shipping_address.valid?
-        expect(@shipping_address.errors.full_messages).to include("Token can't be blank")
+        expect(@shipping_address.errors.full_messages).to include  "Token can't be blank"
       end
       it 'userが紐づいていなければ購入できない'   do
-        @shipping_address.user = nil
+        @shipping_address.user_id = nil
         @shipping_address.valid?
-        expect(@shipping_address.errors.full_messages).to include "User must exist"
+        expect(@shipping_address.errors.full_messages).to include "User can't be blank"
         end
       it 'itemが紐づいていなければ購入できない'   do
-        @shipping_address.item = nil
+        @shipping_address.item_id = nil
         @shipping_address.valid?
-        expect(@shipping_address.errors.full_messages).to include "Item  must exist"
+        expect(@shipping_address.errors.full_messages).to include "Item can't be blank"
         end
     end
   end
 end
+
