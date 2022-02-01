@@ -38,12 +38,12 @@
 - has_one :purchase
 
 
-## shipping_addresses テーブル    (配送先)
+##  addresses テーブル    (配送先)
 
 | column             | Type       | Options                        |
 | -------------------|------------|--------------------------------|
 | post_code          | string     | null: false                    | 
-| prefectures_id     | integer    | null: false                    |
+| shipping_area_id   | integer    | null: false                    |
 | municipality       | string     | null: false                    |
 | address            | string     | null: false                    |
 | building_name      | string     |                                |
@@ -62,7 +62,7 @@
 
 - belongs_to :item
 - belongs_to :user
-- has_one :shipping_address
+- has_one :address
 
 ## comments テーブル 
 
