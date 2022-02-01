@@ -1,4 +1,5 @@
 class Item < ApplicationRecord
+
    validates :product_name,                  presence: true
    validates :product_description,           presence: true
    validates :category_id ,                  presence: true,  numericality: { other_than: 1 , message: "can't be blank"}
