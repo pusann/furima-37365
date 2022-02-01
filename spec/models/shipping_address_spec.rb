@@ -17,6 +17,7 @@ describe '商品購入'   do
       expect(@shipping_address).to be_valid
     end
     it ' building_nameが空でも購入できる'   do
+      @shipping_address.building_name = ''
       expect(@shipping_address).to be_valid
     end
   end

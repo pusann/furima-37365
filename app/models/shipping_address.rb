@@ -2,11 +2,13 @@ class  ShippingAddress
   include ActiveModel::Model 
   attr_accessor :post_code,:shipping_area_id,:municipality,:address, :building_name,:telephone_number,:item_id,:user_id,:token
 
+  with_options presence: true do
   validates :post_code,        presence: true,format: { with: /\A[0-9]{3}-[0-9]{4}\z/ }
   validates :shipping_area_id, presence: true,numericality: { other_than: 1 , message: "can't be blank"}
   validates :municipality,     presence: true
   validates :address,          presence: true
   validates :telephone_number, presence: true,format: {with: /\A\d{10}$|^\d{11}\z/ }
+  end
   validates :user_id,          presence: true
   validates :item_id,          presence: true
   validates :token,            presence: true
